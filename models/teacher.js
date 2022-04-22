@@ -6,4 +6,6 @@ const teacherSchema = new mongoose.Schema({
     subject:String
 })
 
-const Teacher = new mongoose.model(teacherSchema,'Teachers')
+const Teacher = new mongoose.model('Teacher',teacherSchema)
+
+module.exports = Teacher;
