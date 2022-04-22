@@ -27,8 +27,22 @@ const createStudent = async (obj)=>{
 }
 
 const assignTeacherToStudent = async (student_id,teacher_id)=>{
-    const teacher = Teacher.findById(teacher_id);
-    const student = Student.findByID(student_id);
+    const teacher = await Teacher.findById(teacher_id);
+    const student = await Student.findById(student_id);
     student.assignedTeacher = teacher;
     student.save();
+}
+
+const getTeacher = async (subject) =>{
+    const teachers = await Teacher.find({subject})
+    return teachers;
+}
+
+const getStudents = async (grade,section) =>{
+    const students = await Student.find({grade,section});
+    return students;
+}
+
+const editStudent = async (student_id,updatedObj)=>{
+    await Student.findByIdAndUpdate(student_id,updatedObj);
 }
