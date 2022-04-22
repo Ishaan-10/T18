@@ -46,3 +46,13 @@ const getStudents = async (grade,section) =>{
 const editStudent = async (student_id,updatedObj)=>{
     await Student.findByIdAndUpdate(student_id,updatedObj);
 }
+
+const getAssignedStudentsToTeacher = async(teacher_id)=>{
+    const students = await Student.find({}).populate({
+        path:'teacherAssigned',
+        match:{
+            _id:teacher_id
+        }
+    });
+    return students;
+}
